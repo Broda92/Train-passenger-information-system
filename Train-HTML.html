@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Train Info</title>
+	<link rel="stylesheet" type="text/css" href="Train-CSS.css">
+
+</head>
+
+<script type="text/javascript">
+
+function nastaveni() {
+    kategorie = prompt("Bitte eine Zugkategorie ergänzen");
+    cislovlaku = prompt("Bitte eine Zugnummer ergänzen");
+    linka = prompt("Bitte eine Zuglinie ergänzen");
+    vuz = prompt("Bitte eine Wagennummer ergänzen");
+    vlak = eval(kategorie+"_"+cislovlaku+"_"+linka);
+    zpozdeni = prompt("Bitte eine Verspätung ergänzen");
+    jizda();
+};
+
+x = 0;
+jaz = 1;
+language = null;
+
+
+function jizda(){
+    language = vlak[x][4];
+    document.getElementById("LCD1Lang1").src = "Images/Lang_"+language+".png";
+    document.getElementById("LCD2Lang1").src = "Images/Lang_"+language+".png";
+    document.getElementById("LCD3Lang1").src = "Images/Lang_"+language+".png";
+    document.getElementById("LCD4Lang1").src = "Images/Lang_"+language+".png";
+    document.getElementById("LCD1Lang2").src = "Images/Lang_EN.png";
+    document.getElementById("LCD2Lang2").src = "Images/Lang_EN.png";
+    document.getElementById("LCD3Lang2").src = "Images/Lang_EN.png";
+    document.getElementById("LCD4Lang2").src = "Images/Lang_EN.png";
+
+    if (jaz%2 == 0) {
+    language = "EN";
+    console.log(language);
+    document.getElementById("LCD1Lang1").style = "opacity:0.5";
+    document.getElementById("LCD2Lang1").style = "opacity:0.5";
+    document.getElementById("LCD3Lang1").style = "opacity:0.5";
+    document.getElementById("LCD4Lang1").style = "opacity:0.5";
+    document.getElementById("LCD1Lang2").style = "opacity:1";
+    document.getElementById("LCD2Lang2").style = "opacity:1";
+    document.getElementById("LCD3Lang2").style = "opacity:1";
+    document.getElementById("LCD4Lang2").style = "opacity:1";
+    } else {
+    console.log(language);
+    document.getElementById("LCD1Lang1").style = "opacity:1";
+    document.getElementById("LCD2Lang1").style = "opacity:1";
+    document.getElementById("LCD3Lang1").style = "opacity:1";
+    document.getElementById("LCD4Lang1").style = "opacity:1";
+    document.getElementById("LCD1Lang2").style = "opacity:0.5";
+    document.getElementById("LCD2Lang2").style = "opacity:0.5";
+    document.getElementById("LCD3Lang2").style = "opacity:0.5";
+    document.getElementById("LCD4Lang2").style = "opacity:0.5";
+    };
+
+    var lang = [
+    	["AT/DE/CH"," An"," Ab","Willkommen im","Richtung","Nächster Halt","Bahnsteig "," min Zeit","Umsteigen ","Aufgrund einer Hangrutschung","ist die <b>Strecke unterbrochen</b>.","Wir entschuldigen uns","für die Unannehmlichkeiten.","Schienenersatzverkehr<br>bis <b>","Bus ab Bahnhofsvorplatz."],
+    	["CZ"," příj."," odj.","Vítejte v","směr","Příští stanice","Nástupiště "," min přestup","Přestup ","Z důvodu výluky"," je <b>trať mimo provoz</b>.","Omlouváme se","za nepříjemnosti.","Náhradní doprava<br>směr <b>","Autobus před nádražní budovou."],
+    	["SK"," pr."," od.","Vítajte v","smer","Následujúca stanica","Nástupište "," min prestup","Prestup ","Z dôvodu výluky","je <b>trať mimo prevádzky</b>.","Ospravedlňujeme sa","za nepríjemnosti.","Náhradná doprava<br>smer <b>","Autobus pred staničnou budovou."],
+    	["HU"," ind."," érk.","Üdvözöljük","Irány","Következő állomás","Vágány "," min idő","Átutalás ","A karbantartás miatt","<b>a pálya rendben van</b>.","Bocsánatot kérünk","minden kellemetlenségért.","Helyettesítő szállítás<br>irány <b>","Egy busz az állomás előtt."],
+    	["IT"," arr."," part.","Benvenuto in","Direzione","Prossima stazione","Binario "," min tempo","Cambio ","A causa di manutenzione","<b>la ferrovia é fuori servizio</b>.","Scusiamo per","gli eventuali disagi.","Trasporto sostitutivo<br>direzione <b>","Un autobus di fronte alla stazione."],
+    	["EN"," arr."," dep.","Welcome to","Direction","Next stop","Platform "," min Transfer","Transfer ","Because of maintenance","<b>the track is out of service</b>.","We apologize","for inconvenience.","Substitute transport<br>direction <b>","A bus in front of the station building."],
+    	["SI"," pr."," od.","Dobrodošli v","smer","Naslednja postaja","Peron "," min čas","Prenos ","Zaradi vzdrževanja","je <b> v okvari</b>.","Opravičujemo se","za nevšečnosti.","Nadomestni prevoz<br>za <b>","Avtobus pred stavbo postaje."],
+    	["HR"," dol."," odl.","Dobrodošli u","smjer","Sljedeća stanica","Peron "," min vrijeme","Presjedanje ","Zbog održavanja","<b> nije pruga u redu </b>.","Izpričavamo se","zbog neugodnosti.","Zamjenski prijevoz<br>do <b>","Autobus ispred zgrade stanice."],
+
+    	["PL"," prz."," odj.","Witamy w","kierunek","Następny przystanek","Peron "," min czas","Transfer ","Z powodu blokady","<b> linia kolejowa nieczynna</b>.","Przepraszamy","za niedogodności.","Alternatywny transport<br>do <b>","Autobus przed budynkiem stacji."]
+    ];
+
+    var lang_id;
+    switch(language) {
+    	case "AT":
+    		lang_id = 0;
+    		break;
+    	case "DE":
+    		lang_id = 0;
+    		break;
+    	case "CH":
+    		lang_id = 0;
+    		break;
+    	case "CZ":
+    		lang_id = 1;
+    		break;
+    	case "SK":
+    		lang_id = 2;
+    		break;
+    	case "HU":
+    		lang_id = 3;
+    		break;
+    	case "IT":
+    		lang_id = 4;
+    		break;
+    	case "EN":
+    		lang_id = 5;
+    		break;
+    	case "SI":
+    		lang_id = 6;
+    		break;
+    	case "HR":
+    		lang_id = 7;
+    		break;
+    	case "PL":
+    		lang_id = 8;
+    		break;
+    };
+    console.log(lang_id + " "+ language);
+
+	if (vlak[x][6] != undefined && vlak[x][5] != undefined) {
+		var stred = SMap.Coords.fromWGS84(vlak[x][6], vlak[x][5]);
+				var mapa = new SMap(JAK.gel("map"), stred, 8);
+				mapa.addDefaultLayer(SMap.DEF_BASE).enable();
+				var layer = new SMap.Layer.Marker();
+				mapa.addLayer(layer);
+				layer.enable();
+				var options = {};
+				var marker = new SMap.Marker(stred, "myMarker", options);
+				layer.addMarker(marker);
+	};
+
+    var d = new Date();
+    var Zeit = d.getHours()+":"+d.getMinutes();
+    var ZeitMin = parseInt(d.getHours()*60)+parseInt(d.getMinutes());
+
+    document.getElementById("LCD1_Zug").innerHTML = kategorie+" "+"<b>"+cislovlaku+"<b>";
+    if (vuz != "") {
+        document.getElementById("LCD1_Wagen").style.backgroundColor = "white";
+        document.getElementById("LCD1_Wagen").style.color = "black";
+        document.getElementById("LCD1_Wagen").style.fontSize = "12px";
+        document.getElementById("LCD1_Wagen").innerHTML = vuz;
+    };
+
+    document.getElementById("LCD1_Halt").innerHTML = vlak[x][0];
+
+        if (zpozdeni == 0) {if (vlak[x][2] == null) {
+            document.getElementById("LCD1_Ab").innerHTML = vlak[x][1]+lang[lang_id][1];
+            document.getElementById("LCD2_Ab0").innerHTML = vlak[x][1]+lang[lang_id][1];
+        }
+        else {document.getElementById("LCD1_Ab").innerHTML = vlak[x][2]+lang[lang_id][2];
+            document.getElementById("LCD2_Ab0").innerHTML = vlak[x][2]+lang[lang_id][2]}};
+        if (zpozdeni > 0) {if (vlak[x][2] == null) {
+            document.getElementById("LCD1_AbX").innerHTML = vlak[x][1]+lang[lang_id][1];
+            document.getElementById("LCD1_AbX").style.textDecoration = "line-through";
+            document.getElementById("LCD1_Ab").style.color = "orange";
+            var An0 = vlak[x][2];
+            var An0split = An0.split(':');
+            var An0Z = parseInt(An0split[0]*60)+parseInt(An0split[1])+parseInt(zpozdeni);
+            var An0Zm = An0Z%60;
+            var An0Zh = (An0Z-An0Zm)/60;
+            if (An0Zm < 10) {An0Z = An0Zh+":0"+An0Zm;
+            } else {An0Z = An0Zh+":"+An0Zm};
+            document.getElementById("LCD1_Ab").innerHTML = An0Z+lang[lang_id][1];
+            document.getElementById("LCD2_Ab0").innerHTML = An0Z+lang[lang_id][1]}
+            else {document.getElementById("LCD1_AbX").innerHTML = vlak[x][2]+lang[lang_id][2];
+            document.getElementById("LCD1_AbX").style.textDecoration = "line-through";
+            document.getElementById("LCD1_Ab").style.color = "orange";
+            document.getElementById("LCD2_Ab0").style.color = "orange";
+            var Ab0 = vlak[x][2];
+            var Ab0split = Ab0.split(':');
+            var Ab0Z = parseInt(Ab0split[0]*60)+parseInt(Ab0split[1])+parseInt(zpozdeni);
+            var Ab0Zm = Ab0Z%60;
+            var Ab0Zh = (Ab0Z-Ab0Zm)/60;
+            if (Ab0Zm < 10) {Ab0Z = Ab0Zh+":0"+Ab0Zm;
+            } else {Ab0Z = Ab0Zh+":"+Ab0Zm};
+            document.getElementById("LCD1_Ab").innerHTML = Ab0Z+lang[lang_id][2];
+            document.getElementById("LCD2_Ab0").innerHTML = Ab0Z+lang[lang_id][2]}};
+        document.getElementById("LCD1_Willkommen").innerHTML = lang[lang_id][3];    
+        document.getElementById("LCD1_Richtung").innerHTML = lang[lang_id][4];
+
+        document.getElementById("LCD2_AnE").innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1];
+        for (var i = 1; i < vlak.length-2; i++) {
+        if ((i<7) && (vlak[x+i] != undefined)) {
+            if (vlak[x+i][1] == null) {
+            document.getElementById("LCD2_Halt"+i).innerHTML = "";
+            document.getElementById("LCD2_Ab"+i).innerHTML = "";
+            } else {
+            document.getElementById("LCD2_Halt"+i).innerHTML = vlak[x+i][0];
+            document.getElementById("LCD2_Ab"+i).innerHTML = vlak[x+i][1]+lang[lang_id][1];
+            };
+            if (i<5) {
+                if (vlak[x+i][1] != null) {
+                    document.getElementById("LCD3_Halt"+i).innerHTML = vlak[x+i][0];
+                    document.getElementById("LCD3_Ab"+i).innerHTML = vlak[x+i][1]+lang[lang_id][1];
+                } else {
+                    document.getElementById("LCD3_Halt"+i).innerHTML = " ";
+                    document.getElementById("LCD3_Ab"+i).innerHTML = " "};
+                if (vlak[x][0] == vlak[vlak.length-2][0]) {
+                    document.getElementById("LCD3_Halt"+1).innerHTML = vlak[vlak.length-2][0];
+                    document.getElementById("LCD3_Ab"+1).innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1]};
+                };
+            };
+        if ((i<7) && (vlak[x+i] != undefined) && (zpozdeni>0)) {
+            if (vlak[x+i][1] == null) {
+            document.getElementById("LCD2_Halt"+i).innerHTML = "";
+            document.getElementById("LCD2_Ab"+i).innerHTML = "";
+            } else {
+            
+            document.getElementById("LCD2_Halt"+i).innerHTML = vlak[x+i][0];
+            document.getElementById("LCD2_Ab"+i).style.color = "orange";
+            var Ani = vlak[x+i][1];
+            var Anisplit = Ani.split(':');
+            var AniZ = parseInt(Anisplit[0]*60)+parseInt(Anisplit[1])+parseInt(zpozdeni);
+            var AniZm = AniZ%60;
+            var AniZh = (AniZ-AniZm)/60;
+            if (AniZm < 10) {AniZ = AniZh+":0"+AniZm;
+            } else {AniZ = AniZh+":"+AniZm};
+            document.getElementById("LCD2_Ab"+i).innerHTML = AniZ+lang[lang_id][1];
+
+            document.getElementById("LCD2_AnE").style.color = "orange";
+            var AnE = vlak[vlak.length-2][1];
+            var AnEsplit = AnE.split(':');
+            var AnEZ = parseInt(AnEsplit[0]*60)+parseInt(AnEsplit[1])+parseInt(zpozdeni);
+            var AnEZm = AnEZ%60;
+            var AnEZh = (AnEZ-AnEZm)/60;
+            if (AnEZm < 10) {AnEZ = AnEZh+":0"+AnEZm;
+            } else {AnEZ = AnEZh+":"+AnEZm};
+            document.getElementById("LCD2_AnE").innerHTML = AnEZ+lang[lang_id][1];
+
+            };
+            if (i<5) {
+                if (vlak[x+i][1] != null) {
+                    document.getElementById("LCD3_Halt"+i).innerHTML = vlak[x+i][0];
+                    document.getElementById("LCD3_Ab"+i).innerHTML = vlak[x+i][1]+lang[lang_id][1];
+
+                    document.getElementById("LCD3_Ab"+i).style.color = "orange";
+                    var Ani = vlak[x+i][1];
+                    var Anisplit = Ani.split(':');
+                    var AniZ = parseInt(Anisplit[0]*60)+parseInt(Anisplit[1])+parseInt(zpozdeni);
+                    var AniZm = AniZ%60;
+                    var AniZh = (AniZ-AniZm)/60;
+                    if (AniZm < 10) {AniZ = AniZh+":0"+AniZm;
+                    } else {AniZ = AniZh+":"+AniZm};
+                    document.getElementById("LCD3_Ab"+i).innerHTML = AniZ+lang[lang_id][1];
+
+                } else {
+                    document.getElementById("LCD3_Halt"+i).innerHTML = " ";
+                    document.getElementById("LCD3_Ab"+i).innerHTML = " "};
+                if (vlak[x][0] == vlak[vlak.length-2][0]) {
+                    document.getElementById("LCD3_Halt"+1).innerHTML = vlak[vlak.length-2][0];
+                    document.getElementById("LCD3_Ab"+1).innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1]};
+                };
+            document.getElementById("LCD3_AnE").style.color = "orange";
+            var AnE = vlak[vlak.length-2][1];
+            var AnEsplit = AnE.split(':');
+            var AnEZ = parseInt(AnEsplit[0]*60)+parseInt(AnEsplit[1])+parseInt(zpozdeni);
+            var AnEZm = AnEZ%60;
+            var AnEZh = (AnEZ-AnEZm)/60;
+            if (AnEZm < 10) {AnEZ = AnEZh+":0"+AnEZm;
+            } else {AnEZ = AnEZh+":"+AnEZm};
+            document.getElementById("LCD3_AnE").innerHTML = AnEZ+lang[lang_id][1];
+            };    
+        };
+        document.getElementById("LCD3_AnE").innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1];
+        document.getElementById("LCD3_Next").innerHTML = lang[lang_id][5];
+        document.getElementById("LCD4_AnE").innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1];
+        document.getElementById("LCD4_An1").innerHTML = vlak[x+1][1]+lang[lang_id][1];
+        document.getElementById("LCD4_Bstg1").innerHTML = lang[lang_id][6]+vlak[x+1][3];
+
+        if (zpozdeni == 0) {document.getElementById("LCD4_An1").innerHTML = vlak[x+1][1]+lang[lang_id][1]};
+        if (zpozdeni > 0) {
+            document.getElementById("LCD4_AnX").innerHTML = vlak[x+1][1]+lang[lang_id][1];
+            document.getElementById("LCD4_AnX").style.textDecoration = "line-through";
+            document.getElementById("LCD4_An1").style.color = "orange";
+            var An1 = vlak[x+1][1];
+            var An1split = An1.split(':');
+            var An1Z = parseInt(An1split[0]*60)+parseInt(An1split[1])+parseInt(zpozdeni);
+            var An1Zm = An1Z%60;
+            var An1Zh = (An1Z-An1Zm)/60;
+            if (An1Zm < 10) {An1Z = An1Zh+":0"+An1Zm
+            } else {An1Z = An1Zh+":"+An1Zm};
+            document.getElementById("LCD4_An1").innerHTML = An1Z+lang[lang_id][1];
+
+            document.getElementById("LCD4_AnE").style.color = "orange";
+            var AnE = vlak[vlak.length-2][1];
+            var AnEsplit = AnE.split(':');
+            var AnEZ = parseInt(AnEsplit[0]*60)+parseInt(AnEsplit[1])+parseInt(zpozdeni);
+            var AnEZm = AnEZ%60;
+            var AnEZh = (AnEZ-AnEZm)/60;
+            if (AnEZm < 10) {AnEZ = AnEZh+":0"+AnEZm;
+            } else {AnEZ = AnEZh+":"+AnEZm};
+            document.getElementById("LCD4_AnE").innerHTML = AnEZ+lang[lang_id][1];    
+        };
+
+    if (vlak[x][0] == vlak[vlak.length-2][0]) {
+        document.getElementById("LCD4_An1").innerHTML = vlak[vlak.length-2][1]+lang[lang_id][1];
+        document.getElementById("LCD4_Halt1").innerHTML = vlak[vlak.length-2][0];
+        document.getElementById("LCD4_Bstg1").innerHTML = lang[lang_id][6]+vlak[vlak.length-2][3];
+    };
+    
+    document.getElementById("LCD4_UZeit1").innerHTML = vlak[x+1][8][0][2]+lang[lang_id][2];
+    document.getElementById("LCD4_Umst1").innerHTML = vlak[x+1][8][0][0]+" "+vlak[x+1][8][0][1]+" > "+vlak[x+1][8][0][4];
+    document.getElementById("LCD4_UBstg1").innerHTML = lang[lang_id][6]+vlak[x+1][8][0][3]
+    document.getElementById("LCD4_UZeit2").innerHTML = vlak[x+1][8][1][2]+lang[lang_id][2];
+    document.getElementById("LCD4_Umst2").innerHTML = vlak[x+1][8][1][0]+" "+vlak[x+1][8][1][1]+" > "+vlak[x+1][8][1][4];
+    document.getElementById("LCD4_UBstg2").innerHTML = lang[lang_id][6]+vlak[x+1][8][1][3]
+    document.getElementById("LCD4_UZeit3").innerHTML = vlak[x+1][8][2][2]+lang[lang_id][2];
+    document.getElementById("LCD4_Umst3").innerHTML = vlak[x+1][8][2][0]+" "+vlak[x+1][8][2][1]+" > "+vlak[x+1][8][2][4];
+    document.getElementById("LCD4_UBstg3").innerHTML = lang[lang_id][6]+vlak[x+1][8][2][3]
+    document.getElementById("LCD4_HaltE").innerHTML = vlak[vlak.length-2][0];
+    for (var i=0; i<=2; i++) {
+        console.log(vlak[x+1][8][i][2]);
+        var UAn = vlak[x+1][1];
+        var UAb = vlak[x+1][8][i][2];
+        var UAnsplit = UAn.split(':');
+        var UAbsplit = UAb.split(':');
+        var UAnM = parseInt(UAnsplit[0]*60)+parseInt(UAnsplit[1]);
+        var UAbM = parseInt(UAbsplit[0]*60)+parseInt(UAbsplit[1]);
+        var UZi = UAbM-UAnM;
+        document.getElementById("LCD4_UZ"+(i+1)).innerHTML = UZi+lang[lang_id][7];
+    };
+
+    if (vlak[x][0] == vlak[vlak.length-2][0]) {
+        document.getElementById("LCD4_UZeit1").innerHTML = vlak[vlak.length-2][8][0][2]+lang[lang_id][2];
+        document.getElementById("LCD4_Umst1").innerHTML = vlak[vlak.length-2][8][0][0]+" "+vlak[vlak.length-2][8][0][1]+" > "+vlak[vlak.length-2][8][0][4];
+        document.getElementById("LCD4_UBstg1").innerHTML = lang[lang_id][6]+vlak[vlak.length-2][8][0][3]
+        document.getElementById("LCD4_UZeit2").innerHTML = vlak[vlak.length-2][8][1][2]+lang[lang_id][2];
+        document.getElementById("LCD4_Umst2").innerHTML = vlak[vlak.length-2][8][1][0]+" "+vlak[vlak.length-2][8][1][1]+" > "+vlak[vlak.length-2][8][1][4];
+        document.getElementById("LCD4_UBstg2").innerHTML = lang[lang_id][6]+vlak[vlak.length-2][8][1][3]
+        document.getElementById("LCD4_UZeit3").innerHTML = vlak[vlak.length-2][8][2][2]+lang[lang_id][2];
+        document.getElementById("LCD4_Umst3").innerHTML = vlak[vlak.length-2][8][2][0]+" "+vlak[vlak.length-2][8][2][1]+" > "+vlak[vlak.length-2][8][2][4];
+        document.getElementById("LCD4_UBstg3").innerHTML = lang[lang_id][6]+vlak[vlak.length-2][8][2][3]
+        document.getElementById("LCD4_HaltE").innerHTML = vlak[vlak.length-2][0];
+        for (var i=0; i<=2; i++) {
+        console.log(vlak[vlak.length-2][8][i][2]);
+        var UAn = vlak[vlak.length-2][1];
+        var UAb = vlak[vlak.length-2][8][i][2];
+        var UAnsplit = UAn.split(':');
+        var UAbsplit = UAb.split(':');
+        var UAnM = parseInt(UAnsplit[0]*60)+parseInt(UAnsplit[1]);
+        var UAbM = parseInt(UAbsplit[0]*60)+parseInt(UAbsplit[1]);
+        var UZi = UAbM-UAnM;
+        document.getElementById("LCD4_UZ"+(i+1)).innerHTML = UZi+lang[lang_id][7];
+    };
+    };
+    if (vlak[x][7] == "E") {
+        document.getElementById("LCD4_UZeit1").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZeit1").style.color = "black";
+        document.getElementById("LCD4_UZeit1").fontSize = "10px";
+        document.getElementById("LCD4_UZeit1").innerHTML = lang[lang_id][8]+"<img src='Images/Bus_black.png' height='10px'>";
+        document.getElementById("LCD4_UZeit1").style.border = "none";
+        document.getElementById("LCD4_Umst1").style.fontWeight = "normal";
+        document.getElementById("LCD4_Umst1").style.fontSize = "10px";
+        document.getElementById("LCD4_Umst1").style.color = "black";
+        document.getElementById("LCD4_Umst1").style.backgroundColor = "gold";
+        document.getElementById("LCD4_Umst1").innerHTML = lang[lang_id][9];
+        document.getElementById("LCD4_Umst1").style.border = "none";
+        document.getElementById("LCD4_UBstg1").style.fontWeight = "normal";
+        document.getElementById("LCD4_UBstg1").style.fontSize = "10px";
+        document.getElementById("LCD4_UBstg1").style.color = "black";
+        document.getElementById("LCD4_UBstg1").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UBstg1").innerHTML = lang[lang_id][10];
+        document.getElementById("LCD4_UBstg1").style.border = "none";
+        document.getElementById("LCD4_UZeit2").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZeit2").innerHTML = "";
+        document.getElementById("LCD4_UZeit2").style.border = "none";
+        document.getElementById("LCD4_Umst2").style.fontWeight = "normal";
+        document.getElementById("LCD4_Umst2").style.fontSize = "10px";
+        document.getElementById("LCD4_Umst2").style.color = "black";
+        document.getElementById("LCD4_Umst2").style.backgroundColor = "gold";
+        document.getElementById("LCD4_Umst2").innerHTML = lang[lang_id][11];
+        document.getElementById("LCD4_Umst2").style.border = "none";
+        document.getElementById("LCD4_UBstg2").style.fontWeight = "normal";
+        document.getElementById("LCD4_UBstg2").style.fontSize = "10px";
+        document.getElementById("LCD4_UBstg2").style.color = "black";
+        document.getElementById("LCD4_UBstg2").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UBstg2").innerHTML = lang[lang_id][12];
+        document.getElementById("LCD4_UBstg2").style.border = "none";
+        document.getElementById("LCD4_UZeit3").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZeit3").innerHTML = "";
+        document.getElementById("LCD4_UZeit3").style.border = "none";
+        document.getElementById("LCD4_Umst3").style.fontWeight = "normal";
+        document.getElementById("LCD4_Umst3").style.fontSize = "10px";
+        document.getElementById("LCD4_Umst3").style.color = "black";
+        document.getElementById("LCD4_Umst3").style.backgroundColor = "gold";
+        document.getElementById("LCD4_Umst3").innerHTML = lang[lang_id][13]+vlak[vlak.length-2][0]+"</b>";
+        document.getElementById("LCD4_Umst3").style.border = "none";
+        document.getElementById("LCD4_UBstg3").style.fontWeight = "normal";
+        document.getElementById("LCD4_UBstg3").style.fontSize = "10px";
+        document.getElementById("LCD4_UBstg3").style.color = "black";
+        document.getElementById("LCD4_UBstg3").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UBstg3").innerHTML = lang[lang_id][14];
+        document.getElementById("LCD4_UBstg3").style.border = "none";
+        document.getElementById("LCD4_HaltE").innerHTML = vlak[vlak.length-2][0];
+        document.getElementById("LCD4_UZ1").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZ1").style.color = "black";
+        document.getElementById("LCD4_UZ1").innerHTML = "";
+        document.getElementById("LCD4_UZ1").style.border = "none";
+        document.getElementById("LCD4_UZ2").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZ2").style.color = "black";
+        document.getElementById("LCD4_UZ2").innerHTML = "";
+        document.getElementById("LCD4_UZ2").style.border = "none";
+        document.getElementById("LCD4_UZ3").style.backgroundColor = "gold";
+        document.getElementById("LCD4_UZ3").style.color = "black";
+        document.getElementById("LCD4_UZ3").innerHTML = "";
+        document.getElementById("LCD4_UZ3").style.border = "none";
+        document.getElementById("LCD4_AnE").innerHTML = "<img src='Images/Bus_gold.png' height='10px'";
+        document.getElementById("LCD4_HaltE").style.color = "gold";
+        };
+
+    document.getElementById("LCD1_Zug2").innerHTML = kategorie+" "+cislovlaku;
+    document.getElementById("LCD1_Nach").innerHTML = vlak[vlak.length-2][0];
+
+    document.getElementById("LCD2_Zug").innerHTML = kategorie+" "+"<b>"+cislovlaku+"<b>";
+    if (vuz != "") {
+        document.getElementById("LCD2_Wagen").style.backgroundColor = "white";
+        document.getElementById("LCD2_Wagen").style.color = "black";
+        document.getElementById("LCD2_Wagen").style.fontSize = "12px";
+        document.getElementById("LCD2_Wagen").innerHTML = vuz;
+    };
+    
+    document.getElementById("LCD2_Halt0").innerHTML = vlak[x][0];
+    document.getElementById("LCD2_HaltE").innerHTML = vlak[vlak.length-2][0];
+    
+
+    var speed = null;
+    if ((vlak[x][4] = "CZ") || (vlak[x][4] = "SK")) {
+        speed = Math.floor(Math.random() * 161);
+    } else {
+        speed = Math.floor(Math.random() * 231);
+    } 
+    document.getElementById("LCD3_Speed").innerHTML = speed+" km/h";
+    document.getElementById("LCD3_Zug").innerHTML = kategorie+" "+"<b>"+cislovlaku+"<b>";
+    if (vuz != "") {
+        document.getElementById("LCD3_Wagen").style.backgroundColor = "white";
+        document.getElementById("LCD3_Wagen").style.color = "black";
+        document.getElementById("LCD3_Wagen").style.fontSize = "12px";
+        document.getElementById("LCD3_Wagen").innerHTML = vuz;
+    };
+    document.getElementById("LCD3_HaltE").innerHTML = vlak[vlak.length-2][0];
+
+    document.getElementById("LCD4_Zug").innerHTML = kategorie+" "+"<b>"+cislovlaku+"<b>";
+    if (vuz != "") {
+        document.getElementById("LCD4_Wagen").style.backgroundColor = "white";
+        document.getElementById("LCD4_Wagen").style.color = "black";
+        document.getElementById("LCD4_Wagen").style.fontSize = "12px";
+        document.getElementById("LCD4_Wagen").innerHTML = vuz;
+    };
+
+    document.getElementById("LCD4_Halt1").innerHTML = vlak[x+1][0];
+
+    document.getElementById("SeiteRJ_Wagen").innerHTML = vuz;
+    document.getElementById("SeiteRJ_Zug").innerHTML = kategorie+" "+cislovlaku;
+    document.getElementById("SeiteRJ_Von").innerHTML = vlak[0][0];
+    document.getElementById("SeiteRJ_Nach").innerHTML = vlak[vlak.length-2][0];
+
+    document.getElementById("SeiteStandard_Linie").innerHTML = linka;
+    document.getElementById("SeiteStandard_Nach").innerHTML = vlak[vlak.length-2][0];
+};
+
+function dalsi() { 
+    x++;
+    if (vlak[x][0] == vlak[vlak.length-1][0]) {
+        location.reload();
+    };
+    jizda();
+        };
+
+function jazyk() { 
+    jaz++;
+    console.log(jaz);
+        };
+
+var RJ_371_ = [
+["Praha hl.n.", null, "14:50", "4S / 20S", "CZ", 50.0830803, 14.4367781, "",
+    [["R", 684, "14:51", "26S", "Děčín hl.n."],
+    ["Os", 7756, "14:54", "1", "Praha-Zličín"],
+    ["R", 893, "14:58", "9", "Staré Město u UH"]]],
+["Pardubice hl.n.", "15:44", "15:46", "4 / 1", "CZ", 50.0318908, 15.7563753, "",
+    [["Sp", 1461, "15:54", "8", "Hlinsko v Čechách"],
+    ["R", 886, "16:01", "4", "Praha-Smíchov"],
+    ["R", 893, "16:07", "3", "Staré Město u UH"]]],
+["Česká Třebová", "16:19", "16:20", "4 / 1", "CZ", 49.8972472, 16.4463578,"",
+    [["Os", 24771, "16:24", "6", "Moravská Třebová"],
+    ["RJ", 1014, "16:35", "16", "Praha hl.n."],
+    ["Os", 4761, "16:39", "5", "Letovice"]]],
+["Brno-Židenice", "17:16", "17:17", "3 / 1", "CZ", 49.2042161, 16.6361503,"",
+    [["Os", 14154, "17:18", "2a", "Brno-Královo Pole"],
+    ["R", 915, "17:25", "1a", "Šumperk"],
+    ["Os", 4753, "17:26", "1", "Brno hl.n."]]],
+["Brno dolní nádraží", "17:22", "17:24", "1 / 1", "CZ", 49.1830672, 16.6159744,"",
+    [["Bus", 91415, "17:27", "BUS", "Brno hl.n."],
+    ["Bus", 91417, "17:30", "BUS", "Brno hl.n."],
+    ["EC", 274, "17:37", "2 / 2", "Praha hl.n."]]],
+["Břeclav", "17:52", "17:55", "1 / 7", "CZ", 48.7536203, 16.8930283,"",
+    [["rj", 370, "18:07", "1", "Praha hl.n."],
+    ["Os", 4827, "18:08", "14", "Kúty"],
+    ["RJ", 1045, "18:23", "1 / 2J", "Bratislava hl.st."]]],
+["Wien Hbf", "18:49", "18:58", "7", "AT", 48.1849214, 16.3758642,"",
+    [["R", 2254, "18:50", "1", "Retz"],
+    ["S1", 29739, "18:50", "1", "Wien Meidling"],
+    ["S3", 29741, "18:50", "1", "Wien Meidling"]]],
+["Wien Meidling", "19:03", "19:05", "5", "AT", 48.1746672, 16.3338050,"",
+    [["D", 723, "19:05", "6", "Wien Hbf"],
+    ["S1", 23764, "19:06", "3", "Gänserndorf"],
+    ["R", 2359, "19:07", "1", "Payerbach-Reichenau"]]],
+["Wiener Neustadt Hbf", "19:28", "19:32", "4", "AT", 47.8105164, 16.2328872,"",
+    [["REX", 7157, "19:31", "21", "Deutschkreutz"],
+    ["RJ", 754, "19:32", "3", "Flughafen Wien"],
+    ["R", 6537, "19:33", "5A", "Gutenstein"]]],
+["Mürzzuschlag", "20:28", "20:30", "1", "AT", 47.6079597, 15.6772442,"",
+    [["EC", 150, "20:33", "3", "Wien Hbf"],
+    ["S9", 4045, "21:11", "4", "Graz Hbf"],
+    ["RJ", 759, "21:30", "1", "Graz Hbf"]]],
+["Kapfenberg", "20:51", "20:52", "1", "AT", 47.4452325, 15.2920456,"",
+    [["RJ", 850, "21:11", "2", "Wien Hbf"],
+    ["S9", 1716, "21:14", "2", "Mürzzuschlag"],
+    ["S9", 4045, "21:47", "1", "Graz Hbf"]]],
+["Bruck/Mur", "20:56", "20:58", "5", "AT", 47.4135972, 15.2794436,"",
+    [["RJ", 850, "21:03", "2", "Wien Hbf"],
+    ["S8", 1719, "21:06", "4", "Neumarkt am Stmk"],
+    ["S9", 1716, "21:08", "3", "Mürzzuschlag"]]],
+["Graz Hbf", "21:33", null, "3", "AT", 47.0723419, 15.4165078,"",
+    [["S1", 4038, "22:00", "4", "Mürzzuschlag"],
+    ["S7", 8435, "22:04", "9", "Köflach"],
+    ["S61", 8545, "22:04", "9", "Wies-Eibiswald"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var RJX_160_ = [
+["Bratislava hl.st.", null, "06:10", "3", "SK", 48.1591264, 17.1065256, "",
+    [["EC", 282, "06:10", "2", "Praha hl.n."],
+    ["R", 601, "06:13", "4", "Košice"],
+    ["Os", 3040, "06:16", "5", "Kúty"]]],
+["Bratislava-Petržalka", "06:29", "06:32", "1", "SK", 48.1214906, 17.0991439, "",
+    [["Os", 7748, "06:46", "1", "Wien Hbf"],
+    ["Os", 4707, "07:10", "2", "Senec"],
+    ["REX", 7606, "07:15", "1", "Deutschkreutz"]]],
+["Wien Hbf", "07:18", "07:30", "8", "AT", 48.1852761, 16.3744336,"",
+    [["REX", 7604, "07:19", "5", "Deutschkreutz"],
+    ["R", 2208, "07:20", "2", "Wien Floridsdorf"],
+    ["S3", 29281, "07:20", "1", "Wien Liesing"]]],
+["Wien Meidling", "07:35", "07:37", "5", "AT", 48.1746672, 16.3338050,"",
+    [["S1", 23304, "07:36", "3", "Gänserndorf"],
+    ["R", 2313, "07:37", "1", "Wr Neustadt Hbf"],
+    ["REX", 7609, "07:37", "5", "Bratislava-Petržalka"]]],
+["St.Pölten Hbf", "07:58", "08:00", "5", "AT", 48.2083053, 15.6246719,"",
+    [["RJX", 560, "08:00", "5", "Innsbruck Hbf"],
+    ["RJX", 761, "08:02", "3", "Flughafen Wien"],
+    ["REX", 1615, "08:05", "4", "Wien Westbahnhof"]]],
+["Linz/Donau Hbf", "08:44", "08:46", "6", "AT", 48.2896692, 14.2917050,"",
+    [["RJX", 560, "08:46", "6", "Innsbruck Hbf"],
+    ["S5", 8015, "08:48", "6", "Peuerbach"],
+    ["REX", 5904, "08:50", "5", "Passau Hbf"]]],
+["Salzburg Hbf", "09:52", "09:56", "3", "AT", 47.8129539, 13.0455969,"",
+    [["WB", 911, "09:52", "7", "Wien Westbahnhof"],
+    ["RJX", 560, "09:56", "3", "Innsbruck Hbf"],
+    ["EC", 218, "10:00", "1", "Erfurt Hbf"]]],
+["Kufstein", "11:07", "11:09", "3", "AT", 47.5833564, 12.2081681,"",
+    [["RJX", 560, "11:09", "3", "Innsbruck Hbf"],
+    ["S1", 5114, "11:12", "22", "Telfs-Pfaffenhofen"],
+    ["EC", 286, "11:26", "3", "München Hbf"]]],
+["Wörgl Hbf", "11:17", "11:19", "4", "AT", 47.4917983, 12.0605842,"",
+    [["RJX", 560, "11:19", "4", "Innsbruck Hbf"],
+    ["S6", 5019, "11:22", "2", "Hochfilzen"],
+    ["S1", 5114, "11:29", "5", "Telfs-Pfaffenhofen"]]],
+["Innsbruck Hbf", "11:44", "11:48", "3", "AT", 47.2628097, 11.4011478,"",
+    [["S4", 5214, "11:49", "4", "Brennero/Brenner"],
+    ["REX", 5384, "11:52", "31", "Landeck-Zams"],
+    ["S2", 5154, "11:59", "1", "Ötztal"]]],
+["Ötztal", "12:10", "12:12", "3", "AT", 47.2384833, 10.8591128,"",
+    [["S2", 5157, "12:14", "1", "Jenbach"],
+    ["REX", 5384, "12:30", "3", "Landeck-Zams"],
+    ["REX", 5387, "12:31", "2", "Innsbruck Hbf"]]],
+["Landeck-Zams", "12:31", "12:33", "2", "AT", 47.1482431, 10.5783883,"",
+    [["REX", 5389, "13:01", "1", "Innsbruck Hbf"],
+    ["RJX", 165, "13:27", "3", "Budapest-Keleti"],
+    ["RJ", 662, "13:33", "2", "Bregenz"]]],
+["St.Anton am Arlberg", "12:55", "12:57", "2", "AT", 47.1275672, 10.2669925,"",
+    [["RJX", 165, "13:03", "3", "Budapest-Keleti"],
+    ["RJX", 162, "14:57", "2", "Zürich HB"],
+    ["RJX", 167, "15:03", "3", "Bratislava hl.st."]]],
+["Bludenz", "13:29", "13:31", "2", "AT", 47.1549911, 9.8152103,"",
+    [["RJX", 869, "13:30", "3", "Flughafen Wien"],
+    ["R", 8939, "13:37", "11", "Schruns"],
+    ["S1", 5672, "13:39", "1", "Bregenz Hafen"]]],
+["Feldkirch", "13:42", "13:48", "4", "AT", 47.2414283, 9.6039306,"",
+    [["REX", 5573, "13:44", "3", "Bludenz"],
+    ["REX", 5578, "13:47", "5", "Lindau Hbf"],
+    ["S1", 5672, "14:00", "4", "Bregenz Hafen"]]],
+["Buchs SG", "14:06", "14:12", "4", "CH", 47.1709672, 9.4781056,"",
+    [["IR", 3267, "14:15", "2", "Chur"],
+    ["S4", 11458, "14:15", "1", "Sargans"],
+    ["IR", 3274, "14:45", "1", "Zürich HB"]]],
+["Sargans", "14:23", "14:25", "4", "CH", 47.0407258, 9.4529056,"",
+    [["IR", 3267, "14:27", "6", "Chur"],
+    ["IC", 574, "14:28", "2", "Zürich HB"],
+    ["IC", 571, "14:33", "5", "Chur"]]],
+["Zürich HB", "15:20", null, "9", "CH", 47.3790017, 8.5379219,"",
+    [["S24", 20457, "15:21", "4", "Zug"],
+    ["S15", 19556, "15:22", "41", "Niederweningen"],
+    ["S5", 18557, "15:24", "43", "Pfäffikon"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var RJX_66_ = [
+["Budapest-Keleti", null, "13:40", "3", "HU", 47.5005072, 19.0880433, "",
+    [["D", 143, "13:40", "2", "Cluj Napoca"],
+    ["R", 4234, "13:40", "4", "Dunaújváros"],
+    ["EC", 274, "13:40", "5", "Praha hl.n."]]],
+["Budapest Kelenföld", "13:50", "13:55", "1", "HU", 47.4643556, 19.0204544, "",
+    [["R", 3544, "13:50", "1", "Székesfehérvár"],
+    ["R", 3484, "13:50", "2", "Sülysap"],
+    ["R", 7916, "13:57", "1", "Kelebia"]]],
+["Tatabánya", "14:31", "14:31", "2", "HU", 47.5849306, 18.3936100,"",
+    [["R", 4434, "14:40", "5", "Oroszlany"],
+    ["R", 4913, "14:40", "2", "Budapest-Déli"],
+    ["IC", 924, "14:56", "1", "Szombathely"]]],
+["Győr", "15:04", "15:05", "5", "HU", 47.6820844, 17.6348269,"",
+    [["R", 9365, "15:09", "3", "Komárom"],
+    ["R", 9466, "15:18", "1", "Mosonmagyaróvár"],
+    ["IC", 933, "15:21", "5", "Budapest-Keleti"]]],
+["Mosonmagyaróvár", "15:21", "15:22", "5", "HU", 47.8503533, 17.2664261,"",
+    [["EC", 145, "15:36", "5", "Budapest-Keleti"],
+    ["ER", 9433, "15:43", "3", "Győr"],
+    ["ER", 9436, "16:13", "4", "Wien Hbf"]]],
+["Hegyeshalom", "15:29", "15:32", "6", "HU", 47.9135017, 17.1470222,"",
+    [["R", 2806, "15:33", "6", "Bratislava-Petržalka"],
+    ["ER", 9433, "15:35", "6", "Győr"],
+    ["R", 39846, "15:40", "5", "Csorna"]]],
+["Wien Hbf", "16:18", "16:30", "8", "AT", 48.1852761, 16.3744336,"",
+    [["REX", 9405, "16:18", "12", "Hegyeshalom"],
+    ["REX", 7622, "16:19", "6", "Deutschkreutz"],
+    ["R", 2244, "16:20", "2", "Retz"]]],
+["Wien Meidling", "16:35", "16:37", "5", "AT", 48.1746672, 16.3338050,"",
+    [["REX", 1961, "16:35", "2", "Payerbach-Reich."],
+    ["S1", 23664, "16:36", "3", "Gänserndorf"],
+    ["R", 2349, "16:37", "1", "Wr Neustadt Hbf"]]],
+["St.Pölten Hbf", "16:58", "17:00", "5", "AT", 48.2083053, 15.6246719,"",
+    [["RJX", 866, "17:00", "5", "Bregenz"],
+    ["RJX", 67, "17:02", "3", "Budapest-Keleti"],
+    ["REX", 1651, "17:05", "4", "Wien Westbahnhof"]]],
+["Linz/Donau Hbf", "17:44", "17:46", "6", "AT", 48.2896692, 14.2917050,"",
+    [["RJX", 866, "17:46", "6", "Bregenz"],
+    ["S5", 8133, "17:48", "21", "Neumarkt-Kallham"],
+    ["REX", 1788, "17:50", "5", "Passau Hbf"]]],
+["Salzburg Hbf", "18:52", "18:56", "3", "AT", 47.8129539, 13.0455969,"",
+    [["WB", 929, "18:52", "6", "Wien Westbahnhof"],
+    ["R", 1523, "18:58", "8", "Straßwalchen"],
+    ["RJX", 866, "19:00", "3", "Bregenz"]]],
+["München Hbf", "20:32", null, "3", "DE", 48.1404189, 11.5580883,"",
+    [["RB", 59469, "20:32", "28", "Mittenwald"],
+    ["S6", 8604, "20:32", "2", "Tutzing"],
+    ["S7", 8704, "20:33", "2", "Wolfratshausen"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var RJ_133_ = [
+["Wien Hbf", null, "12:25", "7", "AT", 48.1849214, 16.3758642,"",
+    [["S80", 25030, "12:26", "4", "Wien Aspern Nord"],
+    ["S3", 22494, "12:27", "2", "Hollabrunn"],
+    ["R", 2333, "12:29", "1", "Payerbach-Reichenau"]]],
+["Wien Meidling", "12:30", "12:32", "5", "AT", 48.1746672, 16.3338050,"",
+    [["S60", 26041, "12:32", "6", "Bruck/Leitha"],
+    ["S3", 22502, "12:33", "2", "Korneuburg"],
+    ["S1", 23504, "12:36", "3", "Gänserndorf"]]],
+["Wiener Neustadt Hbf", "12:55", "12:57", "4", "AT", 47.8105164, 16.2328872,"",
+    [["R", 7416, "12:59", "6", "Wien Hbf"],
+    ["R", 7131, "13:01", "21", "Sopron"],
+    ["R", 2331, "13:02", "5", "Payerbach-Reichenau"]]],
+["Bruck/Mur", "14:13", "14:15", "1", "AT", 47.4135972, 15.2794436,"",
+    [["REX", 4572, "14:27", "3", "Mürzzuschlag"],
+    ["S8", 4569, "14:36", "1", "Leoben Hbf"],
+    ["RJ", 75, "14:58", "5", "Graz Hbf"]]],
+["Leoben Hbf", "14:25", "14:27", "3", "AT", 47.3866272, 15.0895653,"",
+    [["IC", 518, "14:31", "2", "Innsbruck Hbf"],
+    ["S8", 1710, "14:41", "2", "Mürzzuschlag"],
+    ["S8", 4574, "15:11", "1", "Mürzzuschlag"]]],
+["Knittelfeld", "14:45", "14:47", "2", "AT", 47.2152422, 14.8370628,"",
+    [["S8", 4567, "14:52", "2", "Unzmarkt"],
+    ["S8", 4576, "15:07", "3", "Bruck/Mur"],
+    ["RJ", 132, "15:14", "3", "Wien Hbf"]]],
+["Judenburg", "14:58", "14:59", "3", "AT", 47.1745636, 14.6615261,"",
+    [["RJ", 132, "15:01", "2", "Wien Hbf"],
+    ["S8", 4567, "15:06", "3", "Unzmarkt"],
+    ["S8", 1712, "15:53", "2", "Mürzzuschlag"]]],
+["Unzmarkt", "15:12", "15:13", "3", "AT", 47.2009100, 14.4420350,"",
+    [["R", 8711, "15:22", "21", "Tamsweg"],
+    ["S8", 1712, "15:37", "2", "Mürzzuschlag"],
+    ["R", 1713, "16:22", "3", "Friesach in Ktn"]]],
+["Friesach in Ktn", "15:43", "15:44", "2", "AT", 46.9533614, 14.4107447,"",
+    [["S1", 4245, "15:44", "2", "Lienz in Osttirol"],
+    ["D", 737, "16:39", "2", "Klagenfurt Hbf"],
+    ["R", 1714, "17:03", "3", "Mürzzuschlag"]]],
+["St. Veit/Glan", "16:06", "16:08", "3", "AT", 46.7703911, 14.3666292,"",
+    [["S1", 4243, "16:12", "5", "Spittal-Millstätter See"],
+    ["S1", 4244, "16:24", "4", "Friesach in Ktn"],
+    ["S1", 4245, "16:42", "3", "Lienz in Osttirol"]]],
+["Klagenfurt Hbf", "16:20", "16:22", "1", "AT", 46.6155892, 14.3135347,"",
+    [["S1", 4246, "16:28", "2", "St. Veit/Glan"],
+    ["S1", 4243, "16:32", "1", "Spittal-Millstätter See"],
+    ["S3", 4520, "16:36", "4", "Wolfsberg in Ktn"]]],
+["Pörtschach/Wörther See", "16:31", "16:32", "2", "AT", 46.6361961, 14.1462336,"",
+    [["S1", 4248, "16:42", "1", "Friesach in Ktn"],
+    ["S1", 4243, "16:47", "2", "Spittal-Millstätter See"],
+    ["RJ", 110, "16:55", "2", "München Hbf"]]],
+["Villach Hbf", "16:46", "16:49", "2", "AT", 46.6186181, 13.8484756,"",
+    [["EC", 113, "16:49", "3", "Klagenfurt Hbf"],
+    ["S1", 4250, "16:50", "5", "St. Veit/Glan"],
+    ["EC", 213, "16:53", "3", "Zagreb Glavni kolodvor"]]],
+["Tarvisio Biscoverde", "17:12", "17:15", "3", "IT", 46.5063592, 13.6072139,"",
+    [["REX", 1822, "18:40", "4", "Villach Hbf"],
+    ["RJ", 130, "18:49", "9", "Wien Hbf"],
+    ["R", 1823, "20:05", "9", "Udine"]]],
+["Udine", "18:16", "18:18", "3", "IT", 46.0557822, 13.2421617,"",
+    [["R", 11075, "18:31", "4", "Venezia Santa Lucia"],
+    ["R", 6038, "18:35", "9", "Carnia"],
+    ["R", 2819, "18:55", "9", "Trieste Centrale"]]],
+["Pordenone", "18:49", "18:51", "3", "IT", 45.9563522, 12.6536828,"",
+    [["R", 11062, "18:50", "4", "Udine"],
+    ["R", 11075, "19:10", "9", "Venezia Santa Lucia"],
+    ["R", 2462, "19:17", "9", "Trieste Centrale"]]],
+["Treviso Centrale", "19:30", "19:32", "3", "IT", 45.6596986, 12.2451325,"",
+    [["R", 5895, "19:31", "4", "Portogruaro-Caorle"],
+    ["R", 20936, "19:35", "9", "Belluno"],
+    ["R", 2820, "19:36", "9", "Udine"]]],
+["Venezia Mestre", "19:53", "19:55", "3", "IT", 45.4819031, 12.2319003,"",
+    [["R", 2217, "19:53", "4", "Trieste Centrale"],
+    ["R", 2249, "19:54", "9", "Bologna Centrale"],
+    ["R", 11074, "19:59", "9", "Treviso Centrale"]]],
+["Venezia St. Lucia", "20:05", null, "3", "IT", 45.4413986, 12.3204622,"",
+    [["R", 20876, "20:05", "4", "Verona Porta Nuova"],
+    ["R", 2466, "20:05", "9", "Trieste Centrale"],
+    ["R", 20647, "20:11", "9", "Portogruaro-Caorle"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var EC_159_ = [
+["Wien Hbf", null, "15:58", "7", "AT", 48.1849214, 16.3758642,"",
+    [["R", 2254, "18:50", "1", "Retz"],
+    ["S1", 29739, "18:50", "1", "Wien Meidling"],
+    ["S3", 29741, "18:50", "1", "Wien Meidling"]]],
+["Wien Meidling", "16:03", "16:05", "5", "AT", 48.1746672, 16.3338050,"",
+    [["D", 723, "19:05", "6", "Wien Hbf"],
+    ["S1", 23764, "19:06", "3", "Gänserndorf"],
+    ["R", 2359, "19:07", "1", "Payerbach-Reichenau"]]],
+["Wiener Neustadt Hbf", "16:28", "16:32", "4", "AT", 47.8105164, 16.2328872,"",
+    [["REX", 7157, "19:31", "21", "Deutschkreutz"],
+    ["RJ", 754, "19:32", "3", "Flughafen Wien"],
+    ["R", 6537, "19:33", "5A", "Gutenstein"]]],
+["Mürzzuschlag", "17:28", "17:30", "1", "AT", 47.6079597, 15.6772442,"",
+    [["EC", 150, "20:33", "3", "Wien Hbf"],
+    ["S9", 4045, "21:11", "4", "Graz Hbf"],
+    ["RJ", 759, "21:30", "1", "Graz Hbf"]]],
+["Kapfenberg", "17:51", "17:52", "1", "AT", 47.4452325, 15.2920456,"",
+    [["RJ", 850, "21:11", "2", "Wien Hbf"],
+    ["S9", 1716, "21:14", "2", "Mürzzuschlag"],
+    ["S9", 4045, "21:47", "1", "Graz Hbf"]]],
+["Bruck/Mur", "17:56", "17:58", "5", "AT", 47.4135972, 15.2794436,"",
+    [["RJ", 850, "21:03", "2", "Wien Hbf"],
+    ["S8", 1719, "21:06", "4", "Neumarkt am Stmk"],
+    ["S9", 1716, "21:08", "3", "Mürzzuschlag"]]],
+["Graz Hbf", "18:33", "18:39", "3", "AT", 47.0723419, 15.4165078,"",
+    [["S1", 4038, "22:00", "4", "Mürzzuschlag"],
+    ["S7", 8435, "22:04", "9", "Köflach"],
+    ["S61", 8545, "22:04", "9", "Wies-Eibiswald"]]],
+["Leibnitz", "18:58", "18:59", "7", "AT", 46.7799189, 15.5473458,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Spielfeld-Straß", "19:08", "19:20", "5", "AT", 46.7098550, 15.6292264,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Maribor", "19:37", "19:40", "4", "SI", 46.5619514, 15.6581119,"",
+    [["R", 1613, "19:53", "1", "Ljubljana"],
+    ["R", 2927, "20:20", "3", "Zidani Most"],
+    ["R", 4445, "20:35", "5", "Ruse(SL)"]]],
+["Pragersko", "19:55", "19:56", "1", "SI", 46.3953192, 15.6621542,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Poljcane", "20:08", "20:09", "1", "SI", 46.3134689, 15.5765667,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Šentjur", "20:28", "20:29", "5", "SI", 46.2130292, 15.3962658,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Celje", "20:37", "20:39", "3", "SI", 46.2284908, 15.2681294,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Laško", "20:55", "20:56", "4", "SI", 46.1550853, 15.2318997,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Sevnica", "21:29", "21:30", "1", "SI", 46.0094606, 15.3010244,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Krško", "21:43", "21:44", "1", "SI", 45.9562264, 15.4932861,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Dobova", "21:56", "22:11", "5", "SI", 45.8988036, 15.6545525,"",
+     [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Zagreb Gl. Kolodvor", "22:41", null, "3", "HR", 45.8045311, 15.9790431,"",
+    [["D", 821, "22:56", "4", "Split"],
+    ["D", 411, "23:43", "9", "Beograd Centar"],
+    ["D", 1205, "03:17", "9", "Budapest-Keleti"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var EN_40456_ = [
+["Wien Hbf", null, "22:10", "7", "AT", 48.1849214, 16.3758642,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Břeclav", "23:07", "23:50", "5", "CZ", 48.7536203, 16.8930283,"",
+   [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Ostrava hl.n.", "01:30", "01:32", "4", "CZ", 49.8514939, 18.2670594,"",
+   [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Bohumín", "01:39", "03:18", "1", "CZ", 49.9007453, 18.3595506,"",
+      [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Zebrzydowice", "03:38", "03:39", "1", "PL", 49.8700369, 18.6247597,"",
+   [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Kraków Główny", "06:15", "06:20", "5", "PL", 50.0686661, 19.9478019,"",
+   [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Warszawa Zachodnia", "09:01", "09:02", "3", "PL", 52.2200967, 20.9651661,"",
+   [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Warszawa Centralna", "09:06", "09:10", "7", "PL", 52.2288400, 21.0032653,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+["Warszawa Wschodnia", "09:16", null, "5", "PL", 52.2516861, 21.0518531,"",
+    [[" ", "", "", " ", " "],
+    [" ", "", "", " ", " "],
+    [" ", "", "", " ", " "]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var Os_13317_S33 = [
+["Budišov n. B.", null, "17:35", "2", "CZ", 49.7958031, 17.6139964, "",
+    [["Os", 13319, "19:25", "2", "Suchdol n. O."],
+    ["Os", 13301, "03:13", "2", "Suchdol n. O."],
+    ["Os", 13303, "04:35", "2", "Suchdol n. O."]]],
+["Svatoňovice", "17:44", "17:45", "1", "CZ", 49.7997856, 17.6688042, "",
+    [["Os", 13312, "18:17", "1", "Budišov n. B."],
+    ["Os", 13319, "19:35", "1", "Suchdol n. O."],
+    ["Os", 13314, "20:30", "1", "Budišov n. B."]]],
+["Čermná ve Slezsku", "17:51", "17:51", "1", "CZ", 49.7883072, 17.7084656,"",
+    [["Os", 13312, "18:11", "1", "Budišov n. B."],
+    ["Os", 13319, "19:41", "1", "Suchdol n. O."],
+    ["Os", 13314, "20:24", "1", "Budišov n. B."]]],
+["Vítkov", "17:57", "18:06", "2", "CZ", 49.7741814, 17.7475375,"",
+    [["Os", 13312, "18:05", "1", "Budišov n. B."],
+    ["Os", 13319, "19:47", "1", "Suchdol n. O."],
+    ["Os", 13314, "20:18", "1", "Budišov n. B."]]],
+["Klokočov", "18:15", "18:15", "1", "CZ", 49.7377053, 17.7696494,"",
+    [["Os", 13319, "19:55", "1", "Suchdol n. O."],
+    ["Os", 13314, "20:07", "1", "Budišov n. B."],
+    ["Os", 13302, "07:51", "1", "Budišov n. B."]]],
+["Heřmánky", "18:20", "18:20", "1", "CZ", 49.7134667, 17.7582722,"",
+    [["Os", 13319, "20:01", "1", "Suchdol n. O."],
+    ["Os", 13314, "20:02", "2", "Budišov n. B."],
+    ["Os", 13316, "24:00", "2", "Budišov n. B."]]],
+["Jakubčovice n. O.", "18:27", "18:27", "1", "CZ", 49.6969069, 17.7886239,"",
+    [["Os", 13314, "19:52", "1", "Budišov n. B."],
+    ["Os", 13319, "20:07", "1", "Suchdol n. O."],
+    ["Os", 13316, "23:54", "1", "Budišov n. B."]]],
+["Odry-Loučky", "18:30", "18:31", "1", "CZ", 49.6851006, 17.8093222,"",
+    [["Os", 13314, "19:49", "1", "Budišov n. B."],
+    ["Os", 13319, "20:11", "1", "Suchdol n. O."],
+    ["Os", 13316, "23:51", "1", "Budišov n. B."]]],
+["Odry", "18:35", "18:37", "1", "CZ", 49.6697692, 17.8336353,"",
+    [["Os", 13314, "19:46", "2", "Budišov n. B."],
+    ["Os", 13319, "20:17", "1", "Suchdol n. O."],
+    ["Os", 13316, "23:48", "2", "Budišov n. B."]]],
+["Mankovice", "18:43", "18:43", "1", "CZ", 49.6358222, 17.8757325,"",
+    [["Os", 13314, "19:28", "1", "Budišov n. B."],
+    ["Os", 13319, "20:23", "1", "Suchdol n. O."],
+    ["Os", 13316, "23:40", "1", "Budišov n. B."]]],
+["Suchdol n. O.", "18:50", null, "10", "CZ", 49.6424675, 17.9388103,"",
+    [["R", 841, "18:57", "3", "Bohumín"],
+    ["R", 824, "19:02", "2", "Brno-Královo Pole"],
+    ["LE", 401, "19:09", "3", "Bohumín"]]],
+[" ", null, null, " ", " ",
+    [[" ", null, null, " ", " "],
+    [" ", null, null, " ", " "],
+    [" ", null, null, " ", " "]]]
+]
+
+var spoje = [RJX_66_, RJ_133_, RJ_371_, RJX_160_, Os_13317_S33]
+
+
+/* -- Convert degrees to radians (actually unused here :-) -- */
+function deg2rad(d) { return (2 * d / 360) * Math.PI; }
+/* -- Progress the clock's hands every once in a while -- */
+setInterval(() => {
+      let minute = document.getElementById("minute");
+      let hour = document.getElementById("hour");
+      let second = document.getElementById("second");
+      /* -- note retracing by 90 degrees, this is just the way I calculated the hands, the "0" angle is at 3PM, not 12PM, -- */
+      let S = new Date().getSeconds() * 6 - 90;
+      let M = new Date().getMinutes() * 6 - 90;
+      let H = new Date().getHours() * 30 - 90;
+
+      second.style.transform = 'rotate(' + S + 'deg)';
+      minute.style.transform = 'rotate(' + M + 'deg)';
+      hour.style.transform = 'rotate(' + H + 'deg)';
+  
+    }, 10); /* -- update the clock fast enough -- */
+/* -- Helps calculate the angle of each hand on the clock -- */
+function vec2ang(x, y) {
+     angleInRadians = Math.atan2(y, x);
+     angleInDegrees = (angleInRadians / Math.PI) * 180.0;
+     return angleInDegrees;
+}
+/* -- Let's calculate position and angle of clock's notches-- */
+let nc = document.getElementById("notch-container");
+let angle = 0;
+let rotate_x = 120;
+let rotate_y = 0;
+
+//Hodiny LCD3
+/* -- Convert degrees to radians (actually unused here :-) -- */
+function deg2rad3(d) { return (2 * d / 360) * Math.PI; }
+/* -- Progress the clock's hands every once in a while -- */
+setInterval(() => {
+      let minute3 = document.getElementById("minute3");
+      let hour3 = document.getElementById("hour3");
+      let second3 = document.getElementById("second3");
+      /* -- note retracing by 90 degrees, this is just the way I calculated the hands, the "0" angle is at 3PM, not 12PM, -- */
+      let S3 = new Date().getSeconds() * 6 - 90;
+      let M3 = new Date().getMinutes() * 6 - 90;
+      let H3 = new Date().getHours() * 30 - 90;
+      
+      second3.style.transform = 'rotate(' + S3 + 'deg)';
+      minute3.style.transform = 'rotate(' + M3 + 'deg)';
+      hour3.style.transform = 'rotate(' + H3 + 'deg)';
+  
+    }, 10); /* -- update the clock fast enough -- */
+/* -- Helps calculate the angle of each hand on the clock -- */
+function vec2ang(x, y) {
+     angleInRadians3 = Math.atan2(y, x);
+     angleInDegrees3 = (angleInRadians3 / Math.PI) * 180.0;
+     return angleInDegrees3;
+}
+/* -- Let's calculate position and angle of clock's notches-- */
+let nc3 = document.getElementById("notch-container3");
+let angle3 = 0;
+let rotate_x3 = 120;
+let rotate_y3 = 0;
+
+/*
+výběr spoje podle čísla (> kategorie > Z-DO > zastávky+časy > přípoje)
+
+vlak = kat+číslo = [stanice,př,odj,bstg,přípoje[kat+číslo,odj,bstg,směr]]
+
+vlaky: RJ ABWG OK (RJ 371), ZH-BA OK (RJX 160), BP-MUC (RJX 66), RJ W-VENZ (RJ 133), BnB (Os 13317) :) 
+
+*/
+
+</script>
+
+<script src="https://api.mapy.cz/loader.js"></script>
+<script>Loader.load()</script>
+<script src="moment.js"></script>
+
+<body>
+
+<table id="LCD1">
+    <tr>
+        <th></th>
+        <th class="LCD_Oben" id="LCD1_Wagen"></th>
+        <th class="LCD_Zug" id="LCD1_Zug"></th>
+        <th class="LCD_Lang"><img src="Images/Lang_AT.png" class="Lang1" id="LCD1Lang1">  <img src="Images/Lang_EN.png" class="Lang2" id="LCD1Lang2"></th>
+    </tr>
+    <tr>
+        <th class="LCD_Zeit" id="LCD1_inxmin"></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th id="LCD1_Ab"> </th>
+        <th colspan=3 id="LCD1_Halt"> </th>
+    </tr>
+    <tr>        
+        <th id="LCD1_AbX" class="LCD2_A"></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th rowspan=3>
+            <div id = "clock-rim">
+		    <div id = "clock-face">
+		    <div id = "notch-container"></div>
+		    <div id = "hour"></div>
+		    <div id = "minute"></div>
+		    <div id = "second"></div>
+		    <div id = "center"></div>
+		  </div>
+</div></th>
+        <th colspan=3 class="LCD1_W" id="LCD1_Willkommen"> </th>
+    </tr>
+    <tr>
+        <th colspan=3 class="LCD1_W" id="LCD1_Zug2"> </th>
+    </tr>
+    <tr>
+        <th colspan=3 class="LCD1_W" id="LCD1_Richtung"></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th colspan=3 class="LCD1_WB" id="LCD1_Nach"></th>
+    </tr>
+    <tr>
+        <th></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+</table>
+
+<table id="LCD2">
+    <tr>
+        <th></th>
+        <th class="LCD_Oben" id="LCD2_Wagen"></th>
+        <th class="LCD_Zug" id="LCD2_Zug"> </th>
+        <th class="LCD_Lang"><img src="Images/Lang_AT.png" class="Lang1" id="LCD2Lang1">  <img src="Images/Lang_EN.png" class="Lang2" id="LCD2Lang2"></th>
+    </tr>
+    <tr>
+        <th class="LCD_Zeit" id="LCD2_inxmin"></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab0" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD2_Halt0" class="LCD2_HE"> </th>
+    </tr>
+    <tr id="LCD2_Next">        
+        <th id="LCD2_Ab1" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt1" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab2" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt2" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab3" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt3" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab4" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt4" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab5" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt5" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD2_Ab6" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD2_Halt6" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr class="LCD_Last">
+        <th id="LCD2_AnE" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD2_HaltE" class="LCD2_HE"> </th>
+    </tr>
+</table>
+
+<table id="LCD3">
+    <tr>
+        <th></th>
+        <th class="LCD_Oben" id="LCD3_Wagen"></th>
+        <th class="LCD_Zug" id="LCD3_Zug"> </th>
+        <th class="LCD_Lang"><img src="Images/Lang_AT.png" class="Lang1" id="LCD3Lang1">  <img src="Images/Lang_EN.png" class="Lang2" id="LCD3Lang2"></th>
+    </tr>
+    <tr>
+        <th class="LCD3_Clock" id="LCD3_inxmin" rowspan=2><div id = "clock-rim3">
+            <div id = "clock-face3">
+            <div id = "notch-container3"></div>
+            <div id = "hour3"></div>
+            <div id = "minute3"></div>
+            <div id = "second3"></div>
+            <div id = "center3"></div>
+          </div>
+</div></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th colspan=3 id="LCD3_Speed" class="LCD3_GN"> </th>
+    </tr>
+    <tr>        
+        <th id="LCD2_Ab1" class="LCD2_A"></th>
+        <th colspan=3 id="LCD2_Halt1" class="LCD2_Haltx"></th>
+    </tr>
+    <tr>
+        <th class="LCD_Zeit" id="LCD3_inxmin"></th>
+        <th colspan=3 id="LCD3_Next" class="LCD3_GN"></th>
+    </tr>
+    <tr>
+        <th id="LCD3_Ab1" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD3_Halt1" class="LCD2_HE"> </th>
+    </tr>
+    <tr>
+        <th id="LCD3_Ab2" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD3_Halt2" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD3_Ab3" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD3_Halt3" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr>
+        <th id="LCD3_Ab4" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD3_Halt4" class="LCD2_Haltx"> </th>
+    </tr>
+    <tr class="LCD_Last">
+        <th id="LCD3_AnE" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD3_HaltE" class="LCD2_HE"> </th>
+    </tr>
+</table>
+
+<table id="LCD4">
+    <tr>
+        <th></th>
+        <th class="LCD_Oben" id="LCD4_Wagen"></th>
+        <th class="LCD_Zug" id="LCD4_Zug"> </th>
+        <th class="LCD_Lang"><img src="Images/Lang_AT.png" class="Lang1" id="LCD4Lang1">  <img src="Images/Lang_EN.png" class="Lang2" id="LCD4Lang2"></th>
+    </tr>
+    <tr>
+        <th class="LCD_Zeit" id="LCD4_inxmin"></th>
+        <th class="LCD1_0"></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th id="LCD4_An1" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD4_Halt1" class="LCD2_HE"> </th>
+    </tr>
+    <tr>        
+        <th id="LCD4_AnX" class="LCD2_A"> </th>
+        <th colspan=3 id="LCD4_Bstg1" class="LCD4_NBstg"> </th>
+    </tr>
+    <tr>
+        <th class="LCD4_Zeit" id="LCD4_UZeit1"> </th>
+        <th colspan=3 id="LCD4_Umst1" class="LCD4_Zug"> </th>
+    </tr>
+    <tr>
+        <th id="LCD4_UZ1" class="LCD4_UZeit"></th>
+        <th colspan=3 id="LCD4_UBstg1" class="LCD4_Bstg"> </th>
+    </tr>
+    <tr>
+        <th class="LCD4_Zeit" id="LCD4_UZeit2"> </th>
+        <th colspan=3 id="LCD4_Umst2" class="LCD4_Zug"> </th>
+    </tr>
+    <tr>
+        <th id="LCD4_UZ2" class="LCD4_UZeit"></th>
+        <th colspan=3 id="LCD4_UBstg2" class="LCD4_Bstg"> </th>
+    </tr>
+    <tr>
+        <th class="LCD4_Zeit" id="LCD4_UZeit3"> </th>
+        <th colspan=3 id="LCD4_Umst3" class="LCD4_Zug"> </th>
+    </tr>
+    <tr>
+        <th id="LCD4_UZ3" class="LCD4_UZeit"></th>
+        <th colspan=3 id="LCD4_UBstg3" class="LCD4_Bstg"> </th>
+    </tr>
+    <tr class="LCD_Last">
+        <th id="LCD4_AnE" class="LCD2_AHE"> </th>
+        <th colspan=3 id="LCD4_HaltE" class="LCD2_HE"> </th>
+    </tr>
+</table>
+
+<table id="LCD5Map">
+    <tr>
+        <th><div id="map" style="width:315px;height:200px"></div></th>
+    </tr>
+</table>
+
+<table id="SeiteRJ">
+    <tr id="SeiteRJ_top">
+        <th id="SeiteRJ_Zug"> </th>
+        <th id="SeiteRJ_Wagen"> </th>
+    </tr>
+    <tr>
+        <th id="SeiteRJ_Von" class="SeiteRJ_Route" colspan=2> </th>
+    </tr>
+    <tr>
+        <th id="SeiteRJ_Nach" class="SeiteRJ_Route" colspan=2> </th>
+    </tr>
+</table>
+
+<table id="SeiteStandard">
+    <tr>
+        <th id="SeiteStandard_Linie"> </th>
+        <th id="SeiteStandard_Nach"> </th>
+    </tr>
+</table>
+
+
+<br>
+<input type="button" id="nastaveni" value="Einstellung" onclick="nastaveni()"/>
+<input type="button" id="lang" value="Sprache" onclick="jazyk()"/>
+<input type="button" id="dalsi" value="▼" onclick="dalsi()"/>
+<br>
+<p id="tiraz"><b>Autor: Jan BRODSKÝ, Brno 2019. Optimalisiert für Mozilla Firefox 7x.x</b></p>
+
+</body>
+</html>

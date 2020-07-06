@@ -1,0 +1,464 @@
+body {
+    background-color: #d40027;
+}
+
+#tiraz {
+	color:white;
+	font-family:Arial;
+	font-size:9px;
+	position: absolute;
+	top: 600px;
+	left: 25px;
+}
+
+#nastaveni {
+	position: absolute;
+	font-family:Arial;
+	font-weight: bold;
+	top:550px;
+	width:100px;
+	height:50px;
+	left:22px;
+    border: 1px solid black;
+}
+
+#predchozi {
+	position: absolute;
+	font-family:Arial;
+	font-weight: bold;
+	font-size: 30px;
+	top:550px;
+	width:60px;
+	left:215px;
+	height:50px;
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+}
+
+#dalsi {
+	position: absolute;
+	font-family:Arial;
+	font-weight: bold;
+	font-size: 30px;
+	top:550px;
+	width:60px;
+	left:285px;
+	height:50px;
+	background-color: white;
+	color: black;
+	border: 1px solid black;
+}
+
+table {
+	border:1px solid black;
+}	
+tr {
+	border:1px solid black;
+}
+th {
+	border:1px solid black;
+}	
+
+
+#LCD1 {
+	border:3px solid DimGray;
+	background-color: black;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 100px;
+	left: 22px;
+}	
+
+.LCD_Zeit {
+	width: 75px;
+	font-size: 14px;
+}	
+
+.LCD_Zug {
+	width: 90px;
+	background-color: white;
+	color: black;
+	font-size: 12px;
+	font-weight: normal;
+}	
+
+.LCD_Lang {
+	width: 60px;
+	background-color: black;
+	color: white;
+	font-size: 12px;
+}	
+
+.LCD_Oben {
+	width: 75px;
+	background-color: black;
+	color: white;
+	border-left: 2px solid #d40027;
+}	
+
+.LCD_Wagen {
+	width: 75px;
+	background-color: white;
+	color: black;
+	font-size: 12px;
+	font-weight: normal;
+	border-left: 2px solid #d40027;
+}	
+
+#LCD1_inxmin {
+	font-size: 12px;
+	text-align: right;
+	font-weight: normal;
+	padding-right: 5px;
+}	
+
+#LCD1_Ab {
+	text-align: right;
+	font-size: 14px;
+	font-weight: normal;
+	padding-right: 5px;
+}	
+
+#LCD1_Halt {
+	text-align: left;
+	font-size: 16px;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	height: 18px;
+}	
+
+.LCD1_W {
+	text-align: left;
+	font-size: 20px;
+	font-weight: normal;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	height: 23px;
+}	
+
+.LCD1_WB {
+	text-align: left;
+	font-size: 20px;
+	font-weight: bold;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	height: 23px;
+}	
+
+.LCD1_0 {
+	height: 17px;
+	border-left: 2px solid #d40027;
+}	
+
+#Logo {
+	height: 80px;
+	left: 50px;
+	top: 10px;
+	position: absolute;
+}	
+
+.Lang1 {
+	height: 10px;
+}	
+
+.Lang2 {
+	height: 10px;
+	opacity: 0.5;
+}	
+
+#LCD2 {
+	border:3px solid DimGray;
+	background-color: black;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 101px;
+	left: 357px;
+}
+
+.LCD2_AHE {
+	text-align: right;
+	font-size: 14px;
+	font-weight: normal;
+	padding-right: 5px;
+}	
+
+.LCD2_HE {
+	text-align: left;
+	font-size: 16px;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	height: 18px;
+}	
+
+.LCD2_Haltx {
+	text-align: left;
+	font-size: 15px;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	height: 17px;
+	color: DarkGray;
+}	
+
+.LCD2_A {
+	text-align: right;
+	font-size: 13px;
+	font-weight: normal;
+	padding-right: 5px;
+	color: DarkGray;
+	height: 17px;
+}	
+
+#LCD2_Next {
+	border-bottom: 2px DimGray solid;
+}	
+.LCD_Last {
+	border-top: 2px DimGray solid;
+}	
+
+#LCD3 {
+	border:3px solid DimGray;
+	background-color: black;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 101px;
+	left: 692px;
+}
+
+.LCD3_GN {
+	text-align: left;
+	font-size: 16px;
+	border-left: 2px solid #d40027;
+	padding-left: 10px;
+	font-weight: normal;
+	color: MediumAquamarine;
+	height: 18px;
+}	
+
+#LCD4 {
+	border:3px solid DimGray;
+	background-color: black;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 101px;
+	left: 1025px;
+}
+
+.LCD4_UZeit {
+	text-align: right;
+	font-size: 9px;
+	font-weight: normal;
+	padding-right: 5px;
+	color: MediumAquamarine;
+	background-color: MidnightBlue;
+	height: 11px;
+	border-right: 1px solid MidnightBlue;
+	border-bottom: 2px solid black;
+}	
+
+.LCD4_Bstg {
+	text-align: left;
+	font-size: 9px;
+	padding-left: 10px;
+	height: 12px;
+	color: white;
+	background-color: MidnightBlue;
+	border-bottom: 2px solid black;
+	font-weight: normal;
+}	
+
+.LCD4_NBstg {
+	text-align: left;
+	font-size: 12px;
+	padding-left: 10px;
+	height: 11px;
+	color: white;
+	border-bottom: 2px solid black;
+	font-weight: normal;
+	border-left: 2px solid #d40027;
+}	
+
+.LCD4_Zug {
+	text-align: left;
+	font-size: 14px;
+	padding-left: 10px;
+	color: white;
+	background-color: MidnightBlue;
+	border-bottom: 1px solid MidnightBlue;
+	height: 16px;
+}	
+
+.LCD4_Zeit {
+	font-size: 12px;
+	text-align: right;
+	font-weight: normal;
+	padding-right: 5px;
+	background-color: MidnightBlue;
+	border-bottom: 1px solid MidnightBlue;
+	border-right: 1px solid MidnightBlue;
+}	
+
+#LCD5Map {
+	border:3px solid DimGray;
+	background-color: black;
+	color: white;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 320px;
+	left: 22px;
+	width: 322px;
+	height: 200px;
+}	
+
+#SeiteRJ {
+	border:3px solid black;
+	background-color: black;
+	color: orange;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 400px;
+	left: 500px;
+	width: 150px;
+	height: 50px;
+}	
+
+#SeiteRJ_top {
+	border-bottom: orange 2px solid;
+	height: 22px;
+}	
+
+#SeiteRJ_Wagen {
+	font-size: 20px;
+	text-align: right;
+	height: 22px;
+}	
+
+#SeiteRJ_Zug {
+	font-size: 14px;
+	text-align: left;
+}	
+
+.SeiteRJ_Route {
+	font-size: 16px;
+	text-align: left;
+	height: 18px;
+}	
+
+#SeiteStandard {
+	border:3px solid black;
+	background-color: black;
+	color: orange;
+	font-family: Arial;
+	font-size: 15px;
+	border-collapse: collapse;
+	position: absolute;
+	top: 400px;
+	left: 800px;
+	width: 200px;
+	height: 30px;
+}	
+
+#SeiteStandard_Linie {
+	font-size: 20px;
+	text-align: left;
+}	
+
+#SeiteStandard_Nach {
+	font-size: 18px;
+	text-align: center;
+}	
+
+#lang {
+	position: absolute;
+	font-family:Arial;
+	font-weight: bold;
+	top:550px;
+	width:100px;
+	height:50px;
+	left:150px;
+    border: 1px solid black;
+}	
+
+/* -- Border is required for #clock-face top-margin to work
+      in this case, I used a transparent border
+      because it doesn't really *need* to be visualized -- */
+
+div { border: 1px solid transparent; }
+/* -- The outside rim of the clock with gradient -- */
+#clock-rim {
+  display: block;
+  position: relative;
+
+}
+/* -- Clock's face -- */
+#clock-face {
+  display: block;
+  position: relative;  
+  width: 60px;
+  height: 60px;
+  margin: 0px auto;
+  border-radius: 150px;
+  background: black;
+  border: 1px solid white;
+}
+/* -- Second hand -- */
+#second { position: absolute; top: 30px; left: 30px; width: 28px; height: 0.5px; border: 1px solid transparent; transform: unset; background: red; transform-origin: 1px 1px; }
+/* -- Minute hand -- */
+#minute { position: absolute;top: 30px; left: 30px; width: 28px; height: 1px; border: 1px solid transparent; transform: unset; background: white; transform-origin: 2px 2px; }
+/* -- Hour hand -- */
+#hour { position: absolute;top: 30px; left: 30px; width: 13px; height: 1px; border: 1px solid transparent; transform: unset; background: white; transform-origin: 2px 2px; }
+/* -- Center of the clock -- */
+#center { position: absolute; top: 39px; left: 37px; width: 16px; height: 16px; background: white; border: 1px solid gray; border-radius: 16px; visibility: hidden;}
+/* -- Notches container -- */
+#notch-container { width: 90px; height: 90px }
+/* -- Hourly notch (thicker, but sparse) -- */
+.notch { position: absolute; width: 2px; height: 5px; background: white; }
+/* -- Minute notch (thin) -- */
+.thin { position: absolute; width: 10px; height: 1px; border-top: 1px solid gray; }
+
+#clock-rim3 {
+  display: block;
+  position: relative;
+
+}
+/* -- Clock's face -- */
+#clock-face3 {
+  display: block;
+  position: relative;  
+  width: 32px;
+  height: 32px;
+  margin: 0px auto;
+  border-radius: 150px;
+  background: black;
+  border: 1px solid white;
+}
+/* -- Second hand -- */
+#second3 { position: absolute; top:  15px; left: 15px; width: 14px; height: 0.5px; border: 1px solid transparent; transform: unset; background: red; transform-origin: 1px 1px; }
+/* -- Minute hand -- */
+#minute3 { position: absolute;top:  15px; left: 15px; width: 14px; height: 0.5px; border: 1px solid transparent; transform: unset; background: white; transform-origin: 2px 2px; }
+/* -- Hour hand -- */
+#hour3 { position: absolute;top: 15px; left: 15px; width: 8px; height: 0.5px; border: 1px solid transparent; transform: unset; background: white; transform-origin: 2px 2px; }
+/* -- Center of the clock -- */
+#center3 { position: absolute; top: 39px; left: 37px; width: 16px; height: 16px; background: white; border: 1px solid gray; border-radius: 16px; visibility: hidden;}
+/* -- Notches container -- */
+#notch-container3 { width: 90px; height: 90px }
+/* -- Hourly notch (thicker, but sparse) -- */
+.notch3 { position: absolute; width: 2px; height: 5px; background: white; }
+/* -- Minute notch (thin) -- */
+.thin3 { position: absolute; width: 10px; height: 1px; border-top: 1px solid gray; }
